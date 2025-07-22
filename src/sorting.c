@@ -84,7 +84,10 @@ void	sorting(t_stack **a)
 	b = NULL;
 	sort_index(a);
 	if (check(a))
+	{
+		stack_free(a, 0);
 		exit(0);
+	}
 	else if (list_len(a) == 2)
 		sort_2(a);
 	else if (list_len(a) == 3)

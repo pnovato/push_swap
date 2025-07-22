@@ -17,7 +17,9 @@ typedef struct s_stack
 //main.c
 int     main(int ac, char **av);
 t_stack	*newnode(char *str);
-t_stack	*initstack_a(char **args, int i);
+t_stack *initstack_a(char **args, int from_malloc);
+char	**parse_args(int ac, char **av, int *from_malloc);
+
 // void	printlst(t_stack **lst);
 
 // sorting.c

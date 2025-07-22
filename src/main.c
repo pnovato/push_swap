@@ -15,15 +15,14 @@ t_stack	*newnode(char *str)
 	return (new);
 }
 
-t_stack	*initstack_a(char **args, int i)
+t_stack	*initstack_a(char **args, int from_malloc)
 {
 	t_stack	*a;
 	t_stack	*temp;
-	int		is_split;
+	int		i;
 
 	a = NULL;
-	if (i == 0)
-		is_split = 0;
+	i = 0;
 	while (args[i])
 	{
 		if (!a)
@@ -38,14 +37,15 @@ t_stack	*initstack_a(char **args, int i)
 		}
 		i++;
 	}
-	if (is_split == 0)
+	if (from_malloc)
 		free_args(args);
 	return (a);
 }
 
-int	main(int ac, char **av)
+
+char	**parse_args(int ac, char **av, int *from_malloc)
 {
-	t_stack	*a;
+	char	**args;
 
 	if (ac < 2 || (ac == 2 && !av[1][0]))
 	{
@@ -54,29 +54,31 @@ int	main(int ac, char **av)
 		else
 			error();
 	}
-	else if (ac == 2)
+	if (ac == 2)
 	{
-		a = initstack_a(splitargs(av[1]), 0);
+		args = splitargs(av[1]);
+		*from_malloc = 1;
 	}
 	else
 	{
 		if (checkvalidargs(av, 1) == 1)
 			error();
-		a = initstack_a(av, 1);
+		args = av + 1;
+		*from_malloc = 0;
 	}
+	return (args);
+}
+
+int	main(int ac, char **av)
+{
+	t_stack	*a;
+	char	**args;
+	int		from_malloc;
+
+	args = parse_args(ac, av, &from_malloc);
+	a = initstack_a(args, from_malloc);
 	check_equal(&a);
 	sorting(&a);
 	stack_free(&a, 0);
+	return (0);
 }
-
-// void	printlst(t_stack **lst)
-// {
-// 	t_stack	*print;
-
-// 	print = *lst;
-// 	while (print)
-// 	{
-// 		ft_printf("%i %i\n", print->value, print->index);
-// 		print = print->next;
-// 	}
-// }
