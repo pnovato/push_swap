@@ -20,21 +20,25 @@ To compile the project, simply run:
 
 ```bash
 make
+```
 
 To delete all objects (.o) files generated during compilation.
 
 ```bash
 make clean
+```
 
 To delete all objects files and the final executable.
 
 ```bash
 make fclean
+```
 
 To run fclean followed by make
 
 ```bash
 make re
+```
 
 The executable push_swap will be created in the root directory.
 
@@ -42,12 +46,13 @@ The executable push_swap will be created in the root directory.
 
 ```bash
 ./push_swap [number1] [number2] [number3] ...
+```
 
 Example
 
 ```bash
 ./push_swap 3 2 1
-
+```
 
 Expected output (one command per line):
 
@@ -57,6 +62,7 @@ pb
 sa
 pa
 pa
+```
 
 ## Validation
 
@@ -65,11 +71,13 @@ The project is validated using a companion program called checker (also develope
 ```bash
 ARG="3 2 1"
 ./push_swap $ARG | ./checker $ARG
+```
 
 Expected output:
 
 ```bash
 OK
+```
 
 ## Visualizer: push_swap_visualizer
 
@@ -81,6 +89,7 @@ Clone the visualizer repository:
 
 ```bash
 git clone https://github.com/o-reo/push_swap_visualizer.git
+```
 
 Install required dependencies (for Debian-based systems):
 
@@ -88,6 +97,7 @@ Install required dependencies (for Debian-based systems):
 sudo apt-get update
 sudo apt-get install cmake g++ libgl1-mesa-dev libglu1-mesa-dev \
 libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libfreetype-dev
+```
 
 Build the visualizer:
 
@@ -97,11 +107,13 @@ mkdir build
 cd build
 cmake ..
 make
+```
 
 Run the visualizer:
 
 ```bash
 ./bin/visualizer
+```
 
 ## How to Use
 
